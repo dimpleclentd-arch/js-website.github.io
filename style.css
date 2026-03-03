@@ -1,42 +1,64 @@
 body {
-  font-family: Arial, sans-serif;
-  background-color: #fffafc;
   margin: 0;
-  padding: 0;
-  text-align: center;
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
 }
 
-header {
-  background-color: #ff69b4;
-  color: white;
+.header {
+  background-color: #e0e0e0;
+  text-align: center;
   padding: 20px;
 }
 
-button {
-  background-color: #ffc0cb;
-  border: none;
-  padding: 10px;
-  margin: 5px;
-  cursor: pointer;
-  font-size: 16px;
+.menu-bar {
+  background-color: #333;
+  overflow: hidden;
 }
-button:hover {
-  background-color: #ff69b4;
+.menu-bar a {
+  float: left;
+  display: block;
   color: white;
+  padding: 14px 20px;
+  text-decoration: none;
+}
+.menu-bar a:hover {
+  background-color: #555;
 }
 
-ul {
+.slide-menu {
+  width: 220px;
+  float: left;
+  background-color: #f0f0f0;
+  padding: 15px;
+  min-height: 500px;
+  box-shadow: 0 0 5px #ccc;
+}
+.slide-menu ul {
   list-style-type: none;
   padding: 0;
+}
+.slide-menu li {
+  margin: 10px 0;
+}
+button {
+  background-color: #dcdcdc;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #b0b0b0;
+  color: white;
 }
 
 .hidden {
   display: none;
 }
 
-footer {
-  background-color: #ff69b4;
-  color: white;
+.footer {
+  background-color: #e0e0e0;
+  text-align: center;
   padding: 10px;
   position: fixed;
   bottom: 0;
