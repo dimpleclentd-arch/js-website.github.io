@@ -26,7 +26,23 @@ function variablesDemo(){
   let name=document.getElementById("studentName").value;
   let age=document.getElementById("studentAge").value;
   let course=document.getElementById("studentCourse").value;
-  document.getElementById("output2").innerHTML=`Student: ${name}, Age: ${age}, Course: ${course}`;
+
+  if(name==="" || age==="" || course===""){
+    alert("Please fill in all fields.");
+    return;
+  }
+
+  // Show submitted info
+  let output=document.getElementById("output2");
+  output.innerHTML=`<strong>Student Record</strong><br>
+                    Name: ${name}<br>
+                    Age: ${age}<br>
+                    Course: ${course}`;
+
+  // Clear inputs after submit
+  document.getElementById("studentName").value="";
+  document.getElementById("studentAge").value="";
+  document.getElementById("studentCourse").value="";
 }
 
 // Fees Calculator
@@ -36,15 +52,28 @@ function calcDemo(){
   let f3=Number(document.getElementById("fee3").value);
   let total=f1+f2+f3;
   document.getElementById("outputCalc").innerHTML=`Total Fees: ₱${total}`;
+
+  // Clear inputs
+  document.getElementById("fee1").value="";
+  document.getElementById("fee2").value="";
+  document.getElementById("fee3").value="";
 }
 
 // Class Hours Loop
 function loopsDemo(){
   let start=Number(document.getElementById("startHour").value);
   let end=Number(document.getElementById("endHour").value);
+  if(!start || !end || start>end){
+    alert("Please enter valid start and end hours.");
+    return;
+  }
   let schedule="Class hours: ";
   for(let i=start;i<=end;i++) schedule+=i+":00, ";
   document.getElementById("outputLoops").innerHTML=schedule;
+
+  // Clear inputs
+  document.getElementById("startHour").value="";
+  document.getElementById("endHour").value="";
 }
 
 /* ---------------- Student Tools ---------------- */
@@ -52,7 +81,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 
   // Background Color (whole page)
   const bgBtn=document.getElementById("bgBtn");
-  if(bgBtn) bgBtn.addEventListener("click",()=>document.body.style.background="#e3f2fd");
+  if(bgBtn) bgBtn.addEventListener("click",()=>document.body.style.background="#fff5f8");
 
   // Dark Mode
   const darkBtn=document.getElementById("darkBtn");
