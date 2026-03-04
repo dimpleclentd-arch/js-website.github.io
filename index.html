@@ -15,40 +15,9 @@
 
   <div class="menu-bar">
     <a href="#" onclick="showSection('home')">Home</a>
-    <a href="#" onclick="showSection('about')">About</a>
-    <a href="#" onclick="showSection('contact')">Contact</a>
-  </div>
-
-  <div class="slide-menu">
-    <h3>Activities</h3>
-    <ul>
-      <li>
-        <span onclick="toggleTree('basics')">Basics ▸</span>
-        <ul id="basics" class="nested">
-          <li><a href="#" onclick="showSection('outputDemo')">Output Demo</a></li>
-          <li><a href="#" onclick="showSection('variablesDemo')">Variables</a></li>
-        </ul>
-      </li>
-      <li>
-        <span onclick="toggleTree('handsOn')">Hands‑On ▸</span>
-        <ul id="handsOn" class="nested">
-          <li><a href="#" onclick="showSection('buttonDemo')">Button Alert</a></li>
-        </ul>
-      </li>
-      <li>
-        <span onclick="toggleTree('dom')">DOM Interaction ▸</span>
-        <ul id="dom" class="nested">
-          <li><a href="#" onclick="showSection('bgColor')">Background Color</a></li>
-          <li><a href="#" onclick="showSection('darkMode')">Dark Mode</a></li>
-          <li><a href="#" onclick="showSection('listAdd')">Add List Item</a></li>
-          <li><a href="#" onclick="showSection('removePara')">Remove Paragraph</a></li>
-          <li><a href="#" onclick="showSection('charCount')">Character Count</a></li>
-          <li><a href="#" onclick="showSection('calculator')">Calculator</a></li>
-          <li><a href="#" onclick="showSection('imageChange')">Change Image</a></li>
-          <li><a href="#" onclick="showSection('todo')">To‑Do List</a></li>
-        </ul>
-      </li>
-    </ul>
+    <a href="#" onclick="showSection('outputDemo')">Output Demo</a>
+    <a href="#" onclick="showSection('variablesDemo')">Variables</a>
+    <a href="#" onclick="showSection('buttonDemo')">Button Alert</a>
   </div>
 
   <main>
@@ -56,28 +25,23 @@
       <p>Welcome to your modern JavaScript playground ✨</p>
     </section>
 
-    <section class="content" id="about" style="display:none;">
-      <h2>About</h2>
-      <input type="text" id="aboutInput" placeholder="Tell us your style ✨">
+    <!-- Output Demo -->
+    <section class="content" id="outputDemo" style="display:none;">
+      <h2>Output Demo</h2>
+      <div id="output1"></div>
     </section>
 
-    <section class="content" id="contact" style="display:none;">
-      <p>Email: nails@dimple.com</p>
-      <p>Phone: 123‑456‑7890</p>
+    <!-- Variables Demo -->
+    <section class="content" id="variablesDemo" style="display:none;">
+      <h2>Variables Demo</h2>
+      <div id="output2"></div>
     </section>
 
-    <!-- Activity sections -->
-    <section class="content" id="outputDemo" style="display:none;"><div id="output1"></div></section>
-    <section class="content" id="variablesDemo" style="display:none;"><div id="output2"></div></section>
-    <section class="content" id="buttonDemo" style="display:none;"><button id="btnClick">Click Me</button></section>
-    <section class="content" id="bgColor" style="display:none;"><button id="bgBtn">Change Background</button></section>
-    <section class="content" id="darkMode" style="display:none;"><button id="darkBtn">Toggle Dark Mode</button></section>
-    <section class="content" id="listAdd" style="display:none;"><button id="addItemBtn">Add Item</button><ul id="list"></ul></section>
-    <section class="content" id="removePara" style="display:none;"><p id="para">This will be removed.</p><button id="removeParaBtn">Remove</button></section>
-    <section class="content" id="charCount" style="display:none;"><input type="text" id="charInput"><p id="charCount">Characters: 0</p></section>
-    <section class="content" id="calculator" style="display:none;"><input type="number" id="num1"><input type="number" id="num2"><button id="calcBtn">Add</button><p id="calcResult"></p></section>
-    <section class="content" id="imageChange" style="display:none;"><img id="image" src="https://via.placeholder.com/150"><button id="imgBtn">Change Image</button></section>
-    <section class="content" id="todo" style="display:none;"><input type="text" id="todoInput"><button id="addTodoBtn">Add</button><ul id="todoList"></ul></section>
+    <!-- Button Demo -->
+    <section class="content" id="buttonDemo" style="display:none;">
+      <h2>Button Demo</h2>
+      <button id="btnClick">Click Me</button>
+    </section>
   </main>
 
   <div class="footer">
