@@ -9,84 +9,108 @@
 </head>
 <body>
   <!-- Header -->
-  <div class="header">
-    <h1>Dimple's Nail Salon 💅✨</h1>
-    <p>Minimal, modern & sparkling</p>
-  </div>
+  <header class="header">
+    <h1>Dimple's Nail Salon</h1>
+    <p>Sparkle with simplicity 💅</p>
+  </header>
 
-  <!-- Menu Bar -->
-  <div class="menu-bar">
-    <a href="#" onclick="showSection('home')">Home</a>
-    <a href="#" onclick="showSection('about')">About</a>
-    <a href="#" onclick="showSection('contact')">Contact</a>
-  </div>
+  <!-- Navigation -->
+  <nav class="menu-bar">
+    <a href="#" onclick="showSection('homeAbout')">Home & About</a>
+    <a href="#" onclick="showSection('contactSection')">Contact</a>
+  </nav>
 
-  <!-- Slide Menu -->
-  <div class="slide-menu">
-    <h3>Exercises</h3>
+  <!-- Sidebar -->
+  <aside class="slide-menu">
     <ul>
-      <li><a href="#" onclick="showSection('exercise1')">Exercise 1: Basic HTML</a></li>
-      <li><a href="#" onclick="showSection('exercise2')">Exercise 2: JS Hands-On</a></li>
-      <li><a href="#" onclick="showSection('exercise3')">Exercise 3: Interactive Tasks</a></li>
+      <li><a href="#" onclick="showSection('activity1')">Welcome</a></li>
+      <li><a href="#" onclick="showSection('activity2')">Client Info</a></li>
+      <li><a href="#" onclick="showSection('activity3')">Price Calculator</a></li>
+      <li><a href="#" onclick="showSection('activity4')">Appointment</a></li>
+      <li><a href="#" onclick="showSection('activity5')">Age Check</a></li>
+      <li><a href="#" onclick="showSection('activity6')">Queue</a></li>
+      <li><a href="#" onclick="showSection('activity7')">Booking</a></li>
+      <li><a href="#" onclick="showSection('activity8')">To‑Do List</a></li>
     </ul>
-  </div>
+  </aside>
 
-  <!-- Content Sections -->
-  <div class="content" id="homeSection">
-    <h2>Welcome</h2>
-    <p>We make your nails sparkle with love and care. 💖</p>
-  </div>
+  <!-- Sections -->
+  <main>
+    <!-- Home + About side by side -->
+    <section class="content" id="homeAbout">
+      <div class="split">
+        <div>
+          <h2>Home</h2>
+          <p>Minimal beauty, maximum sparkle ✨</p>
+        </div>
+        <div>
+          <h2>About</h2>
+          <input type="text" id="aboutInput" placeholder="Your nail style ✨">
+        </div>
+      </div>
+    </section>
 
-  <div class="content hidden" id="aboutSection">
-    <h2>About Nails</h2>
-    <p><strong>Nail Extensions:</strong> Add length and style with acrylic or gel extensions.</p>
-    <p><strong>Gel Polish:</strong> Long-lasting shine with UV-cured gel polish.</p>
-    <p><strong>Nail Care:</strong> Proper cleaning, moisturizing, and gentle filing keep nails healthy.</p>
-    <p>✨ At Dimple’s, we handle your nails with care and artistry.</p>
-  </div>
+    <section class="content" id="contactSection" style="display:none;">
+      <p>Email: nails@dimple.com</p>
+      <p>Phone: 123-456-7890</p>
+    </section>
 
-  <div class="content hidden" id="contactSection">
-    <h2>Contact Us</h2>
-    <p>Email: nails@dimple.com</p>
-    <p>Phone: 123-456-7890</p>
-  </div>
+    <!-- Activity Outputs -->
+    <section class="content" id="activity1" style="display:none;">
+      <button onclick="activity1()">Show Welcome</button>
+      <div id="output1"></div>
+    </section>
 
-  <!-- Exercise Sections -->
-  <div class="content hidden" id="exercise1">
-    <h2>Exercise 1</h2>
-    <p>Basic HTML with header, menu bar, slide menu, content, and footer.</p>
-  </div>
+    <section class="content" id="activity2" style="display:none;">
+      <input type="text" id="clientName" placeholder="Client name">
+      <input type="text" id="clientService" placeholder="Service">
+      <input type="text" id="clientTime" placeholder="Time">
+      <button onclick="activity2()">Submit</button>
+      <div id="output2"></div>
+    </section>
 
-  <div class="content hidden" id="exercise2">
-    <h2>Exercise 2</h2>
-    <ul>
-      <li>Activity 1: First JavaScript Output</li>
-      <li>Activity 2: Variables and Data Types</li>
-      <li>Activity 3: Simple Calculator</li>
-      <li>Activity 4: User Input</li>
-      <li>Activity 5: Conditional Statements</li>
-      <li>Activity 6: Loops</li>
-      <li>Activity 7: JS & HTML Interaction</li>
-    </ul>
-  </div>
+    <section class="content" id="activity3" style="display:none;">
+      <input type="number" id="price1" placeholder="Basic Manicure">
+      <input type="number" id="price2" placeholder="Gel Polish">
+      <input type="number" id="price3" placeholder="Nail Art">
+      <button onclick="activity3()">Calculate</button>
+      <div id="output3"></div>
+    </section>
 
-  <div class="content hidden" id="exercise3">
-    <h2>Exercise 3</h2>
-    <ul>
-      <li>Activity 1: Change Background Color</li>
-      <li>Activity 2: Dark Mode Toggle</li>
-      <li>Activity 3: Add List Items</li>
-      <li>Activity 4: Remove Paragraph</li>
-      <li>Activity 5: Character Counter</li>
-      <li>Activity 6: Addition Calculator</li>
-      <li>Activity 7: Change Image</li>
-      <li>Activity 8: Mini To-Do List</li>
-    </ul>
-  </div>
+    <section class="content" id="activity4" style="display:none;">
+      <input type="text" id="apptName" placeholder="Your name">
+      <input type="text" id="apptColor" placeholder="Favorite nail color">
+      <button onclick="activity4()">Book</button>
+      <div id="output4"></div>
+    </section>
+
+    <section class="content" id="activity5" style="display:none;">
+      <input type="number" id="ageInput" placeholder="Enter age">
+      <button onclick="activity5()">Check</button>
+      <div id="output5"></div>
+    </section>
+
+    <section class="content" id="activity6" style="display:none;">
+      <input type="number" id="queueNum" placeholder="Queue size">
+      <button onclick="activity6()">Show Queue</button>
+      <div id="output6"></div>
+    </section>
+
+    <section class="content" id="activity7" style="display:none;">
+      <button onclick="activity7()">Book Appointment</button>
+      <div id="output7"></div>
+    </section>
+
+    <section class="content" id="activity8" style="display:none;">
+      <input type="text" id="todoInput" placeholder="New task">
+      <button onclick="addTodo()">Add</button>
+      <ul id="todoList"></ul>
+    </section>
+  </main>
 
   <!-- Footer -->
-  <div class="footer">
-    <p>&copy; 2026 Dimple's Nail Salon ✨</p>
-  </div>
+  <footer class="footer">
+    <p>&copy; 2026 Dimple's Nail Salon</p>
+  </footer>
 </body>
 </html>
