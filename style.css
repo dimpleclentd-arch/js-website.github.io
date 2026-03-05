@@ -1,155 +1,136 @@
-/* Base */
+/* General page styling */
 body {
-  font-family: "Segoe UI", Arial, sans-serif;
+  font-family: Arial, sans-serif;
   margin: 0;
-  background: #ffe3ec; /* soft pink background */
-  color: #444;
-  line-height: 1.6;
+  background: #fff5f8; /* soft light pink */
+  color: #333;
 }
 
 /* Header */
 .header {
   text-align: center;
-  background: linear-gradient(135deg, #ffdee9, #ffc1d6);
-  padding: 40px 20px;
+  background: #ffd6e8; /* lighter pink */
+  padding: 20px;
 }
 .header h1 {
   margin: 0;
-  font-size: 2.2rem;
-  color: #b03060;
-  letter-spacing: 1px;
+  color: #cc3366;
 }
 .header p {
-  margin: 10px 0 0;
+  margin: 5px 0 0;
   font-style: italic;
-  color: #666;
 }
 
-/* Navigation */
+/* Navigation bar */
 .menu-bar {
   display: flex;
   justify-content: center;
-  background: #ffeef5;
-  padding: 12px;
-  border-bottom: 1px solid #f0cbd6;
+  background: #ffb6d4;
+  padding: 10px;
 }
 .menu-bar a {
-  margin: 0 20px;
+  margin: 0 15px;
   text-decoration: none;
-  color: #444;
-  font-weight: 500;
-  transition: color 0.2s;
+  color: #333;
+  font-weight: bold;
 }
 .menu-bar a:hover {
-  color: #b03060;
+  color: #cc3366;
 }
 
 /* Layout */
 main {
   display: flex;
-  min-height: 80vh;
 }
 .slide-menu {
-  width: 220px;
-  background: #fff;
-  border-right: 1px solid #f0cbd6;
-  padding: 20px;
+  width: 200px;
+  background: #ffd6e8;
+  padding: 15px;
 }
 .slide-menu h3 {
   margin-top: 0;
-  font-size: 1.1rem;
-  color: #b03060;
 }
 .slide-menu ul {
   list-style: none;
   padding: 0;
 }
 .slide-menu li {
-  margin: 8px 0;
+  margin: 5px 0;
 }
 .slide-menu a {
   text-decoration: none;
-  color: #444;
-  transition: color 0.2s;
+  color: #333;
 }
 .slide-menu a:hover {
-  color: #b03060;
+  color: #cc3366;
 }
 .nested {
   display: none;
   margin-left: 15px;
 }
 
-/* Content cards */
+/* Content area */
 .content {
   flex: 1;
-  padding: 25px;
+  padding: 20px;
   background: #fff;
-  margin: 15px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-}
-.content h3 {
-  margin-top: 0;
-  color: #b03060;
+  margin: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 /* Footer */
 .footer {
   text-align: center;
-  background: #ffeef5;
-  padding: 15px;
-  font-size: 0.9rem;
-  color: #666;
+  background: #ffd6e8;
+  padding: 10px;
+  margin-top: 20px;
 }
 
-/* Calculator */
+/* Calculator styling */
 #calcScreen {
   width: 100%;
-  padding: 14px;
+  padding: 12px;
   font-size: 18px;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
   text-align: right;
-  border: 1px solid #ddd;
-  border-radius: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
   background: #fff;
 }
 
 .calc-buttons {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 10px;
+  grid-template-columns: repeat(6, 1fr); /* 6 buttons per row */
+  gap: 8px;
 }
 .calc-buttons button {
-  padding: 14px;
-  font-size: 15px;
+  padding: 12px;
+  font-size: 16px;
   border: none;
-  background: #ffc1d6;
+  background: #ffb6d4;
   cursor: pointer;
-  border-radius: 8px;
-  transition: background 0.2s, transform 0.1s;
+  border-radius: 5px;
+  transition: background 0.2s;
 }
 .calc-buttons button:hover {
-  background: #b03060;
+  background: #cc3366;
   color: #fff;
-  transform: scale(1.05);
 }
 
-/* ---------------- Dark Mode ---------------- */
+/* Dark mode */
 body.dark {
-  background: #1e1e1e;
+  background: #222;
   color: #eee;
 }
-body.dark .header {
-  background: linear-gradient(135deg, #444, #222);
-}
+body.dark .header,
 body.dark .menu-bar,
 body.dark .slide-menu,
 body.dark .footer {
-  background: #2a2a2a;
+  background: #444;
   color: #eee;
 }
 body.dark .content {
-  background: #2e2e2e;
+  background: #333;
   color: #eee;
 }
