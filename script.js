@@ -15,7 +15,9 @@ function toggleTree(id){
   el.style.display=(el.style.display==='block')?'none':'block';
 }
 
-/* ---------------- Student Basics ---------------- */
+/* ---------------- Student Basics (7 Activities) ---------------- */
+
+// 1. Student Info
 function variablesDemo(){
   let name=document.getElementById("studentName").value;
   let age=document.getElementById("studentAge").value;
@@ -31,6 +33,7 @@ function variablesDemo(){
   document.getElementById("studentCourse").value="";
 }
 
+// 2. Fees Calculator
 function calcDemo(){
   let f1=Number(document.getElementById("fee1").value);
   let f2=Number(document.getElementById("fee2").value);
@@ -42,6 +45,7 @@ function calcDemo(){
   document.getElementById("fee3").value="";
 }
 
+// 3. Class Hours Loop
 function loopsDemo(){
   let start=Number(document.getElementById("startHour").value);
   let end=Number(document.getElementById("endHour").value);
@@ -54,6 +58,59 @@ function loopsDemo(){
   document.getElementById("outputLoops").innerHTML=schedule;
   document.getElementById("startHour").value="";
   document.getElementById("endHour").value="";
+}
+
+// 4. Attendance Tracker
+function attendanceDemo(){
+  let present=Number(document.getElementById("presentDays").value);
+  let total=Number(document.getElementById("totalDays").value);
+  if(!present || !total || present>total){
+    alert("Enter valid attendance values.");
+    return;
+  }
+  let percent=(present/total*100).toFixed(1);
+  document.getElementById("outputAttendance").innerHTML=`Attendance: ${percent}%`;
+  document.getElementById("presentDays").value="";
+  document.getElementById("totalDays").value="";
+}
+
+// 5. Subject List
+function subjectDemo(){
+  let subject=document.getElementById("subjectName").value;
+  if(subject===""){ alert("Enter a subject."); return; }
+  let li=document.createElement("li");
+  li.textContent=subject;
+  document.getElementById("subjectList").appendChild(li);
+  document.getElementById("subjectName").value="";
+}
+
+// 6. GPA Calculator
+function gpaDemo(){
+  let g1=Number(document.getElementById("grade1").value);
+  let g2=Number(document.getElementById("grade2").value);
+  let g3=Number(document.getElementById("grade3").value);
+  if(!g1||!g2||!g3){ alert("Enter all grades."); return; }
+  let gpa=((g1+g2+g3)/3).toFixed(2);
+  document.getElementById("outputGPA").innerHTML=`GPA: ${gpa}`;
+  document.getElementById("grade1").value="";
+  document.getElementById("grade2").value="";
+  document.getElementById("grade3").value="";
+}
+
+// 7. Study Timer
+let timerInterval;
+function startTimer(){
+  let minutes=Number(document.getElementById("studyMinutes").value);
+  if(!minutes || minutes<=0){ alert("Enter valid minutes."); return; }
+  let seconds=minutes*60;
+  clearInterval(timerInterval);
+  timerInterval=setInterval(()=>{
+    let m=Math.floor(seconds/60);
+    let s=seconds%60;
+    document.getElementById("outputTimer").innerHTML=`Time Left: ${m}:${s<10?'0'+s:s}`;
+    if(seconds<=0){ clearInterval(timerInterval); alert("Study session complete!"); }
+    seconds--;
+  },1000);
 }
 
 /* ---------------- Tools ---------------- */
@@ -108,43 +165,34 @@ document.addEventListener("DOMContentLoaded",()=>{
   });
 });
 
-/* ---------------- Scientific Calculator ---------------- */
+/* ---------------- Calculator ---------------- */
 function press(val){
   let screen=document.getElementById("calcScreen");
   if(val==="⌫"){ screen.value=screen.value.slice(0,-1); return; }
   if(val==="C"){ screen.value=""; return; }
-  if(val==="π"){ screen.value+=Math.PI; return; }
-  if(val==="e"){ screen.value+=Math.E; return; }
-  if(val==="sin("){ screen.value+="Math.sin("; return; }
-  if(val==="cos("){ screen.value+="Math.cos("; return; }
-  if(val==="tan("){ screen.value+="Math.tan("; return; }
-  if(val==="ln("){ screen.value+="Math.log("; return; }
-  if(val==="log("){ screen.value+="Math.log10("; return; }
-  if(val==="sqrt("){ screen.value+="Math.sqrt("; return; }
-  if(val==="cbrt("){ screen.value+="Math.cbrt("; return; }
-  if(val==="^2"){ screen.value+="**2"; return; }
-  if(val==="^3"){ screen.value+="**3"; return; }
-  if(val==="^"){ screen.value+="**"; return; }
-  if(val==="!"){ screen.value+="!"; return; }
   screen.value+=val;
 }
+function clearScreen(){ document.getElementById("calcScreen").value=""; }
 
-function clearScreen(){
-  document.getElementById("calcScreen").value="";
-}
+function factorial(n){ if(n<0) return NaN; if(n===0) return 1; return n*factorial(n-1); }
 
 function calculate(){
   let exp=document.getElementById("calcScreen").value;
-  // Factorial handling
-  if(exp.includes("!")){
-    exp=exp.replace(/(\d+)!/g,(match,n)=>{
-      let num=parseInt(n), fact=1;
-      for(let i=1;i<=num;i++) fact*=i;
-      return fact;
-    });
-  }
   try{
-    document.getElementById("calcScreen").value=eval(exp);
+    exp=exp.replace(/π/g,"Math.PI")
+           .replace(/e/g,"Math.E")
+           .replace(/sin\(/g,"Math.sin(")
+           .replace(/cos\(/g,"Math.cos(")
+           .replace(/tan\(/g,"Math.tan(")
+           .replace(/ln\(/g,"Math.log(")
+           .replace(/log\(/g,"Math.log10(")
+           .replace(/sqrt\(/g,"Math.sqrt(")
+           .replace(/cbrt\(/g,"Math.cbrt(");
+    if(exp.includes("!")){
+      exp=exp.replace(/(\d+)!/g,(match,num)=>factorial(parseInt(num)));
+    }
+    let result=eval(exp);
+    document.getElementById("calcScreen").value=result;
   }catch{
     document.getElementById("calcScreen").value="Error";
   }
@@ -158,11 +206,24 @@ document.addEventListener("DOMContentLoaded",()=>{
     const quiz=Number(document.getElementById("quiz").value);
     const exam=Number(document.getElementById("exam").value);
     const project=Number(document.getElementById("mco").value);
+
+    if(isNaN(quiz) || isNaN(exam) || isNaN(project)){
+      alert("Please enter all grade values.");
+      return;
+    }
+
     const grade=(quiz*0.2)+(exam*0.3)+(project*0.5);
-    let letter=grade>=90?"A":grade>=80?"B":grade>=70?"C":grade>=60?"D":"F";
+    let letter;
+    if(grade>=90){ letter="A"; }
+    else if(grade>=80){ letter="B"; }
+    else if(grade>=70){ letter="C"; }
+    else if(grade>=60){ letter="D"; }
+    else { letter="F"; }
+
     let result=`Final Grade: ${grade.toFixed(1)} | Letter: ${letter}`;
     history.push(result);
-    document.getElementById("result").innerHTML=result+`<br><br>History:<br>${history.join("<br>")}`;
+    document.getElementById("result").innerHTML=
+      result+`<br><br><strong>History:</strong><br>${history.join("<br>")}`;
   });
 
   const resetBtn=document.getElementById("resetBtn");
@@ -171,5 +232,6 @@ document.addEventListener("DOMContentLoaded",()=>{
     document.getElementById("exam").value="";
     document.getElementById("mco").value="";
     document.getElementById("result").innerHTML="";
+    history=[];
   });
 });
