@@ -1,9 +1,5 @@
 /* Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 /* Global */
 body {
@@ -11,10 +7,9 @@ body {
   flex-direction: column;
   min-height: 100vh;
   font-family: 'Segoe UI', Arial, sans-serif;
-  background: #fff5f8; /* baby pink background */
+  background: #fff5f8;
   color: #333;
   line-height: 1.6;
-  transition: background 0.3s ease;
 }
 
 /* Header & Footer */
@@ -24,18 +19,8 @@ body {
   background: linear-gradient(to right, #fff5f8, #ffffff);
   box-shadow: 0 2px 6px rgba(0,0,0,0.05);
 }
-.header h1 {
-  font-size: 2.5rem;
-  color: #d46a92; /* rose accent */
-}
-.header p {
-  color: #777;
-}
-.footer {
-  font-size: 13px;
-  color: #999;
-  border-top: 1px solid #eee;
-}
+.header h1 { font-size: 2.5rem; color: #d46a92; }
+.footer { font-size: 13px; color: #999; border-top: 1px solid #eee; }
 
 /* Navigation */
 .menu-bar {
@@ -50,49 +35,33 @@ body {
   text-decoration: none;
   color: #444;
   font-weight: bold;
-  transition: color 0.3s;
 }
-.menu-bar a:hover {
-  color: #d46a92;
-}
+.menu-bar a:hover { color: #d46a92; }
 
-/* Main container: sidebar + content */
+/* Main container */
 main {
   display: flex;
   flex: 1;
-  gap: 20px;              /* space between sidebar and content */
+  gap: 20px;
   padding: 20px;
 }
 
 /* Sidebar */
 .slide-menu {
-  flex: 0 0 240px;        /* fixed width */
+  flex: 0 0 240px;
   background: #fff;
   border-right: 1px solid #eee;
   padding: 20px;
 }
-.slide-menu h3 {
-  font-size: 1.2rem;
-  margin-bottom: 10px;
-  color: #d46a92;
-}
+.slide-menu h3 { color: #d46a92; }
 .slide-menu ul { list-style: none; }
 .slide-menu li { margin: 8px 0; }
-.slide-menu span {
-  cursor: pointer;
-  font-weight: bold;
-  color: #444;
-}
-.slide-menu a {
-  text-decoration: none;
-  color: #666;
-  font-size: 14px;
-  transition: color 0.3s;
-}
+.slide-menu span { cursor: pointer; font-weight: bold; }
+.slide-menu a { text-decoration: none; color: #666; }
 .slide-menu a:hover { color: #d46a92; }
 .nested { display: none; margin-left: 15px; }
 
-/* Content area */
+/* Content */
 .content {
   flex: 1;
   background: #fff;
@@ -102,45 +71,7 @@ main {
   transition: opacity 0.3s ease;
 }
 
-/* Inputs */
-input, textarea {
-  display: block;
-  margin: 10px 0;
-  padding: 10px;
-  width: 100%;
-  max-width: 320px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-}
-
-/* Buttons */
-button {
-  margin-top: 10px;
-  padding: 10px 16px;
-  border: none;
-  background: #d46a92;
-  color: #fff;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-button:hover { background: #b94f78; }
-
-/* To-Do List */
-#todoList { list-style: none; margin-top: 12px; padding: 0; }
-#todoList li {
-  display: block;
-  margin: 12px 0;
-  padding: 12px;
-  background: #ffeef3;
-  border-radius: 6px;
-  line-height: 1.4;
-}
-#todoList li strong {
-  color: #d46a92;
-}
-
-/* Calculator */
+/* Calculator Screen */
 #calcScreen {
   width: 100%;
   padding: 12px;
@@ -151,38 +82,50 @@ button:hover { background: #b94f78; }
   text-align: right;
   background: #fff0f5;
 }
+
+/* Calculator Buttons Grid */
 .calc-buttons {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
   gap: 8px;
 }
+
 .calc-buttons button {
-  padding: 20px;
-  font-size: 1.2rem;
+  padding: 18px;
+  font-size: 1rem;
   border-radius: 6px;
+  border: none;
   background: #f9dbe6;
   color: #333;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
 }
+
 .calc-buttons button:hover {
   background: #d46a92;
   color: #fff;
 }
 
-/* Images */
-img {
-  max-width: 220px;
-  border-radius: 10px;
-  margin-top: 12px;
+/* Responsive Layout */
+@media(max-width:768px){
+  main { flex-direction: column; }
+  .slide-menu {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #eee;
+  }
+  .calc-buttons {
+    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+  }
 }
 
-/* Grade Calculator */
-#result {
-  margin-top: 15px;
-  font-weight: bold;
-  color: #d46a92;
+@media (orientation: landscape) {
+  .calc-buttons {
+    grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+  }
 }
 
-/* Dark mode */
+/* Dark Mode */
 .dark {
   background: #222;
   color: #eee;
@@ -197,19 +140,4 @@ img {
 .dark .menu-bar a,
 .dark .slide-menu a {
   color: #eee;
-}
-
-/* Responsive */
-@media(max-width:768px){
-  main {
-    flex-direction: column;
-  }
-  .slide-menu {
-    width: 100%;
-    border-right: none;
-    border-bottom: 1px solid #eee;
-  }
-  .content {
-    margin: 10px 0;
-  }
 }
