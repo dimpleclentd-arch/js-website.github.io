@@ -1,49 +1,26 @@
-/* Base */
+/* Base (light theme) */
 body {
   font-family: "Segoe UI", Arial, sans-serif;
   margin: 0;
-  background: #fff9fb; /* soft pink background */
+  background: #ffe3ec; /* soft pink background */
   color: #444;
   line-height: 1.6;
-  transition: background 0.3s ease, color 0.3s ease;
-}
-
-/* Alternate background */
-body.bg-alt {
-  background: #ffeef5;
-}
-
-/* Dark mode overrides everything */
-body.dark {
-  background: #1e1e1e;
-  color: #eee;
-}
-
-/* Banner Image */
-.banner {
-  width: 100%;
-  overflow: hidden;
-}
-.banner img {
-  display: block;
-  width: 100%;
-  height: auto;
-  object-fit: cover;
 }
 
 /* Header */
 .header {
   text-align: center;
-  background: #ffe3ec;
-  padding: 30px 20px;
+  background: linear-gradient(135deg, #ffdee9, #ffc1d6);
+  padding: 40px 20px;
 }
 .header h1 {
   margin: 0;
-  font-size: 2rem;
+  font-size: 2.2rem;
   color: #b03060;
+  letter-spacing: 1px;
 }
 .header p {
-  margin: 8px 0 0;
+  margin: 10px 0 0;
   font-style: italic;
   color: #666;
 }
@@ -52,7 +29,7 @@ body.dark {
 .menu-bar {
   display: flex;
   justify-content: center;
-  background: #ffc1d6;
+  background: #ffeef5;
   padding: 12px;
   border-bottom: 1px solid #f0cbd6;
 }
@@ -120,13 +97,49 @@ main {
 /* Footer */
 .footer {
   text-align: center;
-  background: #ffe3ec;
+  background: #ffeef5;
   padding: 15px;
   font-size: 0.9rem;
   color: #666;
 }
 
-/* Dark mode refinements */
+/* Calculator */
+#calcScreen {
+  width: 100%;
+  padding: 14px;
+  font-size: 18px;
+  margin-bottom: 14px;
+  text-align: right;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.calc-buttons {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+}
+.calc-buttons button {
+  padding: 14px;
+  font-size: 15px;
+  border: none;
+  background: #ffc1d6;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background 0.2s, transform 0.1s;
+}
+.calc-buttons button:hover {
+  background: #b03060;
+  color: #fff;
+  transform: scale(1.05);
+}
+
+/* ---------------- Dark Mode ---------------- */
+body.dark {
+  background: #1e1e1e;
+  color: #eee;
+}
 body.dark .header {
   background: linear-gradient(135deg, #444, #222);
 }
