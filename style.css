@@ -1,143 +1,135 @@
-/* Reset */
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-/* Global */
+/* General page styling */
 body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  font-family: 'Segoe UI', Arial, sans-serif;
-  background: #fff5f8;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #ffeef5;
   color: #333;
-  line-height: 1.6;
 }
 
-/* Header & Footer */
-.header, .footer {
+/* Header */
+.header {
   text-align: center;
-  padding: 30px;
-  background: linear-gradient(to right, #fff5f8, #ffffff);
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  background: #f8cce0;
+  padding: 20px;
 }
-.header h1 { font-size: 2.5rem; color: #d46a92; }
-.footer { font-size: 13px; color: #999; border-top: 1px solid #eee; }
+.header h1 {
+  margin: 0;
+  color: #d63384;
+}
+.header p {
+  margin: 5px 0 0;
+  font-style: italic;
+}
 
-/* Navigation */
+/* Navigation bar */
 .menu-bar {
   display: flex;
   justify-content: center;
-  gap: 30px;
-  background: #fff;
-  padding: 12px;
-  border-bottom: 1px solid #eee;
+  background: #f4b6d4;
+  padding: 10px;
 }
 .menu-bar a {
+  margin: 0 15px;
   text-decoration: none;
-  color: #444;
+  color: #333;
   font-weight: bold;
 }
-.menu-bar a:hover { color: #d46a92; }
+.menu-bar a:hover {
+  color: #d63384;
+}
 
-/* Main container */
+/* Layout */
 main {
   display: flex;
-  flex: 1;
-  gap: 20px;
-  padding: 20px;
 }
-
-/* Sidebar */
 .slide-menu {
-  flex: 0 0 240px;
-  background: #fff;
-  border-right: 1px solid #eee;
-  padding: 20px;
+  width: 220px;
+  background: #f8cce0;
+  padding: 15px;
 }
-.slide-menu h3 { color: #d46a92; }
-.slide-menu ul { list-style: none; }
-.slide-menu li { margin: 8px 0; }
-.slide-menu span { cursor: pointer; font-weight: bold; }
-.slide-menu a { text-decoration: none; color: #666; }
-.slide-menu a:hover { color: #d46a92; }
-.nested { display: none; margin-left: 15px; }
+.slide-menu h3 {
+  margin-top: 0;
+}
+.slide-menu ul {
+  list-style: none;
+  padding: 0;
+}
+.slide-menu li {
+  margin: 5px 0;
+}
+.slide-menu a {
+  text-decoration: none;
+  color: #333;
+}
+.slide-menu a:hover {
+  color: #d63384;
+}
+.nested {
+  display: none;
+  margin-left: 15px;
+}
 
-/* Content */
+/* Content area */
 .content {
   flex: 1;
-  background: #fff;
-  border-radius: 8px;
   padding: 20px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-  transition: opacity 0.3s ease;
+  background: #fff;
+  margin: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-/* Calculator Screen */
+/* Footer */
+.footer {
+  text-align: center;
+  background: #f8cce0;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+/* Calculator styling */
 #calcScreen {
   width: 100%;
-  padding: 12px;
+  padding: 10px;
+  font-size: 18px;
   margin-bottom: 10px;
-  font-size: 1.4rem;
-  border: 1px solid #ccc;
-  border-radius: 6px;
   text-align: right;
-  background: #fff0f5;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
-/* Calculator Buttons Grid */
 .calc-buttons {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+  grid-template-columns: repeat(6, 1fr);
   gap: 8px;
 }
-
 .calc-buttons button {
-  padding: 18px;
-  font-size: 1rem;
-  border-radius: 6px;
+  padding: 12px;
+  font-size: 16px;
   border: none;
-  background: #f9dbe6;
-  color: #333;
+  background: #f4b6d4;
   cursor: pointer;
-  transition: background 0.3s, color 0.3s;
+  border-radius: 5px;
+  transition: background 0.2s;
 }
-
 .calc-buttons button:hover {
-  background: #d46a92;
+  background: #d63384;
   color: #fff;
 }
 
-/* Responsive Layout */
-@media(max-width:768px){
-  main { flex-direction: column; }
-  .slide-menu {
-    width: 100%;
-    border-right: none;
-    border-bottom: 1px solid #eee;
-  }
-  .calc-buttons {
-    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
-  }
-}
-
-@media (orientation: landscape) {
-  .calc-buttons {
-    grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
-  }
-}
-
-/* Dark Mode */
-.dark {
+/* Dark mode */
+body.dark {
   background: #222;
   color: #eee;
 }
-.dark .header,
-.dark .menu-bar,
-.dark .slide-menu,
-.dark .content {
-  background: #333;
+body.dark .header,
+body.dark .menu-bar,
+body.dark .slide-menu,
+body.dark .footer {
+  background: #444;
   color: #eee;
 }
-.dark .menu-bar a,
-.dark .slide-menu a {
+body.dark .content {
+  background: #333;
   color: #eee;
 }
