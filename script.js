@@ -21,17 +21,24 @@ function toggleTree(id){
 
 /* ---------------- Tools ---------------- */
 document.addEventListener("DOMContentLoaded",()=>{
-  // Background color changer
+  // Background color changer (fixed)
   const bgBtn=document.getElementById("bgBtn");
   if(bgBtn) bgBtn.addEventListener("click",()=>{
-    document.body.style.background=
-      document.body.style.background==="#fff5f8" ? "#ffeef5" : "#fff5f8";
+    // Only toggle background if NOT in dark mode
+    if (!document.body.classList.contains("dark")) {
+      document.body.classList.toggle("bg-alt");
+    }
   });
 
-  // Dark mode toggle
+  // Dark mode toggle (fixed)
   const darkBtn=document.getElementById("darkBtn");
   if(darkBtn) darkBtn.addEventListener("click",()=>{
     document.body.classList.toggle("dark");
+
+    // Reset background toggle when entering dark mode
+    if (document.body.classList.contains("dark")) {
+      document.body.classList.remove("bg-alt");
+    }
   });
 
   // Add school item
