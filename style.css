@@ -21,7 +21,7 @@ body {
 .header, .footer {
   text-align: center;
   padding: 30px;
-  background: linear-gradient(to right, #fff5f8, #ffffff); /* soft gradient */
+  background: linear-gradient(to right, #fff5f8, #ffffff);
   box-shadow: 0 2px 6px rgba(0,0,0,0.05);
 }
 .header h1 {
@@ -58,10 +58,10 @@ body {
 
 /* Main container: sidebar + content */
 main {
-  display: flex;          /* side by side */
+  display: flex;
   flex: 1;
   gap: 20px;              /* space between sidebar and content */
-  padding: 20px;          /* spacing inside main */
+  padding: 20px;
 }
 
 /* Sidebar */
@@ -94,7 +94,7 @@ main {
 
 /* Content area */
 .content {
-  flex: 1;                /* fills remaining space */
+  flex: 1;
   background: #fff;
   border-radius: 8px;
   padding: 20px;
@@ -118,7 +118,7 @@ button {
   margin-top: 10px;
   padding: 10px 16px;
   border: none;
-  background: #d46a92; /* baby pink accent */
+  background: #d46a92;
   color: #fff;
   border-radius: 6px;
   cursor: pointer;
@@ -132,7 +132,7 @@ button:hover { background: #b94f78; }
   display: block;
   margin: 12px 0;
   padding: 12px;
-  background: #ffeef3; /* light pink card */
+  background: #ffeef3;
   border-radius: 6px;
   line-height: 1.4;
 }
@@ -140,7 +140,7 @@ button:hover { background: #b94f78; }
   color: #d46a92;
 }
 
-/* Calculator (phone style) */
+/* Calculator */
 #calcScreen {
   width: 100%;
   padding: 12px;
@@ -160,7 +160,7 @@ button:hover { background: #b94f78; }
   padding: 20px;
   font-size: 1.2rem;
   border-radius: 6px;
-  background: #f9dbe6; /* soft baby pink */
+  background: #f9dbe6;
   color: #333;
 }
 .calc-buttons button:hover {
