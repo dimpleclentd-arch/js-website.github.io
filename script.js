@@ -1,10 +1,27 @@
+// Show/hide sections
+function showSection(id){
+  document.querySelectorAll('.content').forEach(sec=>{
+    sec.style.display='none';
+    sec.style.opacity=0;
+  });
+  const section=document.getElementById(id);
+  section.style.display='block';
+  setTimeout(()=>section.style.opacity=1,50);
+}
+
+// Toggle sidebar tree
+function toggleTree(id){
+  const el=document.getElementById(id);
+  el.style.display=(el.style.display==='block')?'none':'block';
+}
+
 /* ---------------- Tools ---------------- */
 document.addEventListener("DOMContentLoaded",()=>{
   // Background color changer
   const bgBtn=document.getElementById("bgBtn");
   if(bgBtn) bgBtn.addEventListener("click",()=>{
     document.body.style.background=
-      document.body.style.background==="#fff5f8" ? "#f0f0f0" : "#fff5f8";
+      document.body.style.background==="#fff5f8" ? "#ffeef5" : "#fff5f8";
   });
 
   // Dark mode toggle
@@ -13,7 +30,7 @@ document.addEventListener("DOMContentLoaded",()=>{
     document.body.classList.toggle("dark");
   });
 
-  // Add school item to list
+  // Add school item
   const addItemBtn=document.getElementById("addItemBtn");
   if(addItemBtn) addItemBtn.addEventListener("click",()=>{
     let item=prompt("Enter school item:");
@@ -24,7 +41,7 @@ document.addEventListener("DOMContentLoaded",()=>{
     }
   });
 
-  // Remove announcement paragraph
+  // Remove announcement
   const removeParaBtn=document.getElementById("removeParaBtn");
   if(removeParaBtn) removeParaBtn.addEventListener("click",()=>{
     let p=document.getElementById("announcement");
@@ -60,5 +77,76 @@ document.addEventListener("DOMContentLoaded",()=>{
     document.getElementById("todoList").appendChild(li);
     todoMonth.value=""; todoDate.value=""; todoTask.value="";
     todoPriority.value=""; todoNotes.value=""; todoReminder.value="";
+  });
+});
+
+/* ---------------- Calculator ---------------- */
+function press(val){
+  let screen=document.getElementById("calcScreen");
+  if(val==="⌫"){ screen.value=screen.value.slice(0,-1); return; }
+  if(val==="C"){ screen.value=""; return; }
+  screen.value+=val;
+}
+function clearScreen(){ document.getElementById("calcScreen").value=""; }
+
+function factorial(n){ if(n<0) return NaN; if(n===0) return 1; return n*factorial(n-1); }
+
+function calculate(){
+  let exp=document.getElementById("calcScreen").value;
+  try{
+    exp=exp.replace(/π/g,"Math.PI")
+           .replace(/e/g,"Math.E")
+           .replace(/sin\(/g,"Math.sin(")
+           .replace(/cos\(/g,"Math.cos(")
+           .replace(/tan\(/g,"Math.tan(")
+           .replace(/ln\(/g,"Math.log(")
+           .replace(/lg\(/g,"Math.log10(")
+           .replace(/sqrt\(/g,"Math.sqrt(")
+           .replace(/cbrt\(/g,"Math.cbrt(");
+    if(exp.includes("!")){
+      exp=exp.replace(/(\d+)!/g,(match,num)=>factorial(parseInt(num)));
+    }
+    let result=eval(exp);
+    document.getElementById("calcScreen").value=result;
+  }catch{
+    document.getElementById("calcScreen").value="Error";
+  }
+}
+
+/* ---------------- Grades ---------------- */
+document.addEventListener("DOMContentLoaded",()=>{
+  let history=[];
+  const calcGradeBtn=document.getElementById("calcGradeBtn");
+  if(calcGradeBtn) calcGradeBtn.addEventListener("click",()=>{
+    const quiz=Number(document.getElementById("quiz").value);
+    const exam=Number(document.getElementById("exam").value);
+    const project=Number(document.getElementById("mco").value);
+
+    if(isNaN(quiz) || isNaN(exam) || isNaN(project)){
+      alert("Please enter all grade values.");
+      return;
+    }
+
+    const grade=(quiz*0.2)+(exam*0.3)+(project*0.5);
+    let letter;
+    if(grade>=90){ letter="A"; }
+    else if(grade>=80){ letter="B"; }
+    else if(grade>=70){ letter="C"; }
+    else if(grade>=60){ letter="D"; }
+    else { letter="F"; }
+
+    let result=`Final Grade: ${grade.toFixed(1)} | Letter: ${letter}`;
+    history.push(result);
+    document.getElementById("result").innerHTML=
+      result+`<br><br><strong>History:</strong><br>${history.join("<br>")}`;
+  });
+
+  const resetBtn=document.getElementById("resetBtn");
+  if(resetBtn) resetBtn.addEventListener("click",()=>{
+    document.getElementById("quiz").value="";
+    document.getElementById("exam").value="";
+    document.getElementById("mco").value="";
+    document.getElementById("result").innerHTML="";
+    history=[];
   });
 });
