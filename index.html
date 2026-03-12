@@ -79,59 +79,41 @@
     </section>
 
     <!-- SCIENTIFIC CALCULATOR -->
-    <section class="content" id="calculator" style="display:none;">
-      <h2>🧮 Scientific Calculator</h2>
+    <div id="calculator" class="content active">
+    <h2>Scientific Calculator</h2>
+    <div class="calculator">
       <input type="text" id="calcScreen" readonly>
       <div class="calc-buttons">
-        <!-- Scientific Functions Row 1 -->
-        <button onclick="press('sin(')">sin</button>
-        <button onclick="press('cos(')">cos</button>
-        <button onclick="press('tan(')">tan</button>
-        <button onclick="press('log(')">log</button>
-        <button onclick="press('ln(')">ln</button>
-        <button onclick="press('sqrt(')">√</button>
-        
-        <!-- Scientific Functions Row 2 -->
-        <button onclick="press('cbrt(')">∛</button>
-        <button onclick="press('^2')">x²</button>
-        <button onclick="press('^3')">x³</button>
-        <button onclick="press('^')">xʸ</button>
-        <button onclick="press('!')">x!</button>
-        <button onclick="press('(')">(</button>
-        
-        <!-- Scientific Functions Row 3 -->
-        <button onclick="press(')')">)</button>
-        <button onclick="press('Math.PI')">π</button>
-        <button onclick="press('Math.E')">e</button>
-        <button onclick="press('%')">%</button>
-        <button onclick="press('1/')">1/x</button>
-        <button onclick="clearScreen()">C</button>
-        
-        <!-- Basic Operations Row 1 -->
         <button onclick="press('7')">7</button>
         <button onclick="press('8')">8</button>
         <button onclick="press('9')">9</button>
-        <button onclick="press('/')">÷</button>
-        <button onclick="press('*')">×</button>
-        <button onclick="press('-')">−</button>
-        
-        <!-- Basic Operations Row 2 -->
+        <button onclick="press('/')">/</button>
         <button onclick="press('4')">4</button>
         <button onclick="press('5')">5</button>
         <button onclick="press('6')">6</button>
-        <button onclick="press('+')">+</button>
-        <button onclick="press('=')" style="background-color: #27ae60;">=</button>
+        <button onclick="press('*')">*</button>
+        <button onclick="press('1')">1</button>
+        <button onclick="press('2')">2</button>
+        <button onclick="press('3')">3</button>
+        <button onclick="press('-')">-</button>
         <button onclick="press('0')">0</button>
-        
-        <!-- Basic Operations Row 3 -->
         <button onclick="press('.')">.</button>
-        <button onclick="press('00')">00</button>
-        <button onclick="press('000')">000</button>
-        <button onclick="press('±')">±</button>
-        <button onclick="press('0000')">0000</button>
-        <button onclick="press('00000')">00000</button>
+        <button onclick="calculate()">=</button>
+        <button onclick="press('+')">+</button>
+        <button onclick="clearScreen()">C</button>
+        <button onclick="press('sin$')">sin</button>
+        <button onclick="press('cos$')">cos</button>
+        <button onclick="press('tan$')">tan</button>
+        <button onclick="press('ln$')">ln</button>
+        <button onclick="press('lg$')">lg</button>
+        <button onclick="press('sqrt$')">√</button>
+        <button onclick="press('cbrt$')">∛</button>
+        <button onclick="press('!')">!</button>
+        <button onclick="press('π')">π</button>
+        <button onclick="press('e')">e</button>
       </div>
-    </section>
+    </div>
+  </div>
 
     <!-- TOOLS -->
     <section class="content" id="bgColor" style="display:none;">
@@ -215,4 +197,5 @@
   <script src="script.js"></script>
 </body>
 </html>
+
 
