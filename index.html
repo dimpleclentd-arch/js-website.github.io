@@ -211,17 +211,26 @@
       <ul id="todoList"></ul>
     </section>
 
-    <!-- GRADES -->
-    <section class="content" id="gradeCalc" style="display:none;">
-      <h2>📊 Grade Calculator</h2>
-      <input type="number" id="quiz" placeholder="Quiz Score">
-      <input type="number" id="exam" placeholder="Exam Score">
-      <input type="number" id="mco" placeholder="Project Score">
-      <button id="calcGradeBtn">Calculate Grade</button>
-      <button id="resetBtn">Reset</button>
-      <div id="result"></div>
-    </section>
-  </main>
+    <!-- GRADE CALCULATOR SECTION -->
+<section class="content" id="gradeCalc" style="display:none;">
+  <h2>📊 Grade Calculator</h2>
+  
+  <div class="quiz-container">
+    <h3 style="text-align: center; margin-bottom: 15px;">Add Quiz Scores</h3>
+    <div id="quizInputs">
+      <!-- Quiz inputs will be added here dynamically -->
+    </div>
+    
+    <button class="add-quiz-btn" onclick="addQuizInput()">+ Add Another Quiz</button>
+    <button class="calculate-btn" onclick="calculateGrade()">Calculate Grade</button>
+    <button class="calculate-btn" onclick="resetGrade()" style="background: #ff6b6b;">Reset</button>
+    
+    <div class="result-box" id="resultBox" style="display: none;">
+      <h3>Your Grade</h3>
+      <p id="gradeResult">0%</p>
+    </div>
+  </div>
+</section>
 
   <!-- Footer -->
   <footer class="footer"><p>&copy; 2026 StudySpace</p></footer>
