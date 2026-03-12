@@ -31,28 +31,50 @@ function clearScreen() {
 
 function factorial(n) {
   if (n < 0) return NaN;
-  if (n === 0) return 1;
+  if (n === 0 || n === 1) return 1;
   return n * factorial(n - 1);
 }
 
 function calculate() {
   let exp = document.getElementById("calcScreen").value;
   try {
+    // Replace special symbols with Math functions
     exp = exp.replace(/π/g, "Math.PI")
              .replace(/e/g, "Math.E")
              .replace(/sin\$/g, "Math.sin(")
              .replace(/cos\$/g, "Math.cos(")
              .replace(/tan\$/g, "Math.tan(")
+             .replace(/log\$/g, "Math.log10(")
              .replace(/ln\$/g, "Math.log(")
-             .replace(/lg\$/g, "Math.log10(")
              .replace(/sqrt\$/g, "Math.sqrt(")
              .replace(/cbrt\$/g, "Math.cbrt(");
 
+    // Handle power operations
+    exp = exp.replace(/\^2/g, "**2")
+             .replace(/\^3/g, "**3")
+             .replace(/\^/g, "**");
+
+    // Handle factorial
     if (exp.includes("!")) {
       exp = exp.replace(/(\d+)!/g, (match, num) => factorial(parseInt(num)));
     }
 
+    // Handle percentage
+    exp = exp.replace(/(\d+)%/g, "($1/100)");
+
+    // Handle 1/x
+    exp = exp.replace(/1\/(\d+)/g, "1/$1");
+
+    // Handle negative sign
+    exp = exp.replace(/±(\d+)/g, "-$1");
+
     let result = eval(exp);
+    
+    // Round to avoid floating point errors
+    if (!isNaN(result) && isFinite(result)) {
+      result = Math.round(result * 100000000) / 100000000;
+    }
+    
     document.getElementById("calcScreen").value = result;
     calcExpression = result.toString();
   } catch (error) {
@@ -210,42 +232,52 @@ function removeQuizInput(id) {
   }
 }
 
-// Calculate the average grade from all quiz inputs
+// Calculate the average grade from all inputs
 function calculateGrade() {
+  // Get quiz scores
   const inputs = document.querySelectorAll('.quiz-input-group input');
-  let totalScore = 0;
-  let count = 0;
+  let quizTotal = 0;
+  let quizCount = 0;
 
   inputs.forEach(input => {
     const score = parseFloat(input.value);
     if (!isNaN(score)) {
-      totalScore += score;
-      count++;
+      quizTotal += score;
+      quizCount++;
     }
   });
 
-  if (count > 0) {
-    const average = totalScore / count;
-    let grade = "F";
-    if (average >= 90) grade = "A";
-    else if (average >= 80) grade = "B";
-    else if (average >= 70) grade = "C";
-    else if (average >= 60) grade = "D";
-    
-    document.getElementById("gradeResult").innerHTML = `
-      <p><strong>Total: ${totalScore}/${count * 100}</strong></p>
-      <p><strong>Average: ${average.toFixed(2)}%</strong></p>
-      <p><strong>Grade: ${grade}</strong></p>
-    `;
-  } else {
-    document.getElementById("gradeResult").textContent = "Please enter at least one score!";
-  }
+  // Get exam and project scores
+  const exam = parseFloat(document.getElementById("exam").value) || 0;
+  const project = parseFloat(document.getElementById("project").value) || 0;
+
+  // Calculate total and average
+  const totalScore = quizTotal + exam + project;
+  const maxScore = (quizCount * 100) + 100 + 100;
+  const percentage = (totalScore / maxScore) * 100;
+  
+  let grade = "F";
+  if (percentage >= 90) grade = "A";
+  else if (percentage >= 80) grade = "B";
+  else if (percentage >= 70) grade = "C";
+  else if (percentage >= 60) grade = "D";
+  
+  document.getElementById("gradeResult").innerHTML = `
+    <p><strong>Quiz Total: ${quizTotal}/${quizCount * 100}</strong></p>
+    <p><strong>Exam: ${exam}/100</strong></p>
+    <p><strong>Project: ${project}/100</strong></p>
+    <p><strong>Total: ${totalScore}/${maxScore}</strong></p>
+    <p><strong>Percentage: ${percentage.toFixed(2)}%</strong></p>
+    <p><strong>Grade: ${grade}</strong></p>
+  `;
 }
 
 // Reset all quiz inputs
 function resetQuiz() {
   quizCount = 0;
   document.getElementById('quizInputs').innerHTML = '';
+  document.getElementById("exam").value = "";
+  document.getElementById("project").value = "";
   document.getElementById("gradeResult").innerHTML = '';
 }
 
