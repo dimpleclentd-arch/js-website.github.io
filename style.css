@@ -1,3 +1,4 @@
+/* ==================== CSS VARIABLES ==================== */
 :root {
   --primary: #ffb6c1;
   --primary-light: #ffd1dc;
@@ -19,7 +20,11 @@ body.dark-mode {
   --gray-light: #252535;
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* { 
+  margin: 0; 
+  padding: 0; 
+  box-sizing: border-box; 
+}
 
 body {
   font-family: 'Segoe UI', sans-serif;
@@ -42,7 +47,6 @@ body.dark-mode {
   margin: 0 auto;
 }
 
-/* Banner Image */
 .header::before {
   content: '';
   position: absolute;
@@ -129,7 +133,7 @@ main {
   color: var(--primary-dark);
   border-bottom: 2px solid var(--primary-light);
   padding-bottom: 10px;
-  text-align: center; /* Center the titles */
+  text-align: center;
 }
 
 .slide-menu ul { 
@@ -209,7 +213,6 @@ main {
   box-shadow: 0 8px 25px rgba(255, 182, 193, 0.4);
 }
 
-/* Dark Mode Support */
 body.dark-mode #image {
   border-color: var(--primary-light);
   box-shadow: 0 4px 15px rgba(255, 137, 163, 0.3);
@@ -293,6 +296,42 @@ ul#list li, ul#reminderList li, ul#todoList li {
   margin-bottom: 8px;
   border-radius: var(--radius);
   border-left: 4px solid var(--primary);
+}
+
+/* ==================== QUIZ INPUT GROUP ==================== */
+.quiz-input-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.quiz-input-group input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid var(--primary-light);
+  border-radius: var(--radius);
+}
+
+.remove-btn {
+  padding: 10px 15px;
+  background-color: var(--primary-dark);
+  color: white;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.remove-btn:hover {
+  background-color: #c0392b;
+  transform: translateY(-2px);
+}
+
+#gradeResult {
+  margin-top: 15px;
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--primary-dark);
 }
 
 /* ==================== FOOTER ==================== */
