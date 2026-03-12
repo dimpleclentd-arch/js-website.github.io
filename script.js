@@ -184,46 +184,81 @@ function calcFees() {
   document.getElementById("feesResult").textContent = "Total Fees: $" + total.toFixed(2);
 }
 
-/* ==================== GRADES ==================== */
-document.addEventListener("DOMContentLoaded", () => {
-  let history = [];
-  const calcGradeBtn = document.getElementById("calcGradeBtn");
+/* ==================== GRADE CALCULATOR SECTION ==================== */
+<section class="content" id="gradeCalc" style="display:none;">
+  <h2>📊 Grade Calculator</h2>
+  
+  <div class="quiz-container">
+    <h3 style="text-align: center; margin-bottom: 15px;">Add Quiz Scores</h3>
+    <div id="quizInputs">
+      <!-- Quiz inputs will be added here dynamically -->
+    </div>
+    
+    <button class="add-quiz-btn" onclick="addQuizInput()">+ Add Another Quiz</button>
+    <button class="calculate-btn" onclick="calculateGrade()">Calculate Grade</button>
+    <button class="calculate-btn" onclick="resetGrade()" style="background: #ff6b6b;">Reset</button>
+    
+    <div class="result-box" id="resultBox" style="display: none;">
+      <h3>Your Grade</h3>
+      <p id="gradeResult">0%</p>
+    </div>
+  </div>
+</section>
 
-  if (calcGradeBtn) {
-    calcGradeBtn.addEventListener("click", () => {
-      const quiz = Number(document.getElementById("quiz").value);
-      const exam = Number(document.getElementById("exam").value);
-      const project = Number(document.getElementById("mco").value);
+<!-- JAVASCRIPT FOR GRADE CALCULATOR -->
+<script>
+  let quizCount = 0;
 
-      if (isNaN(quiz) || isNaN(exam) || isNaN(project)) {
-        alert("Please enter all grade values.");
-        return;
+  // Add a new quiz input field
+  function addQuizInput() {
+    quizCount++;
+    const quizContainer = document.getElementById('quizInputs');
+    
+    const inputGroup = document.createElement('div');
+    inputGroup.className = 'quiz-input-group';
+    inputGroup.innerHTML = `
+      <input type="number" id="quizScore${quizCount}" placeholder="Quiz ${quizCount} Score" min="0" max="100" />
+      <button class="remove-btn" onclick="removeQuizInput(${quizCount})">Remove</button>
+    `;
+    
+    quizContainer.appendChild(inputGroup);
+  }
+
+  // Remove a quiz input field
+  function removeQuizInput(id) {
+    const inputGroup = document.getElementById(`quizScore${id}`).parentElement;
+    inputGroup.remove();
+  }
+
+  // Calculate the average grade
+  function calculateGrade() {
+    const inputs = document.querySelectorAll('.quiz-input-group input');
+    let totalScore = 0;
+    let count = 0;
+
+    inputs.forEach(input => {
+      const score = parseFloat(input.value);
+      if (!isNaN(score)) {
+        totalScore += score;
+        count++;
       }
-
-      const grade = (quiz * 0.2) + (exam * 0.3) + (project * 0.5);
-      let letter;
-      if (grade >= 90) letter = "A";
-      else if (grade >= 80) letter = "B";
-      else if (grade >= 70) letter = "C";
-      else if (grade >= 60) letter = "D";
-      else letter = "F";
-
-      const resultText = "Final Grade: " + grade.toFixed(1) + " | Letter: " + letter;
-      history.push(resultText);
-
-      document.getElementById("result").innerHTML =
-        resultText + "<br><br><strong>History:</strong><br>" + history.join("<br>");
     });
+
+    if (count === 0) {
+      alert('Please enter at least one quiz score!');
+      return;
+    }
+
+    const average = totalScore / count;
+    document.getElementById('gradeResult').textContent = average.toFixed(2) + '%';
+    document.getElementById('resultBox').style.display = 'block';
   }
 
-  const resetBtn = document.getElementById("resetBtn");
-  if (resetBtn) {
-    resetBtn.addEventListener("click", () => {
-      document.getElementById("quiz").value = "";
-      document.getElementById("exam").value = "";
-      document.getElementById("mco").value = "";
-      document.getElementById("result").innerHTML = "";
-      history = [];
-    });
+  // Reset all quiz inputs
+  function resetGrade() {
+    document.getElementById('quizInputs').innerHTML = '';
+    document.getElementById('resultBox').style.display = 'none';
+    document.getElementById('gradeResult').textContent = '0%';
+    quizCount = 0;
   }
-});
+</script>
