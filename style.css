@@ -36,9 +36,9 @@ body.dark-mode {
 .header {
 
   background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-  padding: 0;
+  padding: 500px;
   overflow: hidden;
-  margin-left: 100px;
+  margin-left: 500px;
 }
 
 /* Banner Image */
